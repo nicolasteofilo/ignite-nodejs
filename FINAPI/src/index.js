@@ -1,31 +1,47 @@
-const express = require("express");
-const { v4: uuidv4 } = require("uuid");
+const express = require('express')
+const { v4: uuid } = require('uuid')
 
-const app = express();
+const app = express()
 
-app.use(express.json());
+app.use(express.json())
 
 const customers = [];
 
-// cpf - String
-// name- String
-// id - uuid
-// stateman []
-app.post("/acount", (req, res) => {
-  const { cpf, name } = req.body;
-  const id = uuidv4();
-  customers.push({
-    id,
-    cpf,
-    name,
-    stateman: [],
-  })
+app.post('/account', (request, response) => {
+    const { cpf, name } = request.body
 
-  return res.status(201).json({
-    message: "Conta criada com succeso",
-  });
-});
+    const customerAlreadyExists = customers.some(
+        customer => customer.cpf == cpf
+    )
 
-app.listen(3333, () => {
-  console.log("⚙️  Server is running in http://localhost:3333");
-});
+    if(customerAlreadyExists){
+        return response.status(400).json({
+            message: 'Customer already exists!'
+        })
+    }
+
+    customers.push({
+        cpf,
+        name,
+        id: uuid(),
+        statement: []
+    })
+
+    return response.status(201).json({
+        message: 'Customer created successfully!',
+    })
+})
+
+app.get('/statement', (request, response) => {
+    const { cpf } = request.header
+    
+    const customer = customers.find(customer => customer.cpf === parseInt(cpf))
+
+    if(!customer) {
+        return response.status(400).json({error: "Customer not found"})
+    }
+
+    return response.json(customer.statement)
+})
+
+app.listen(3333, () => console.log('Server on!'))
