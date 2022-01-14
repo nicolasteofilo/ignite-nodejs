@@ -27,7 +27,7 @@ function verifyIfExistsAccountCPF(req, res, next) {
 
 function getBalance(statement) {
   const balance = statement.reduce((acc, operation) => {
-    if (operation.type === 'credit') {
+    if (operation.type === "credit") {
       return acc + operation.amount;
     } else {
       return acc - operation.amount;
@@ -63,10 +63,37 @@ app.post("/account", (request, response) => {
   });
 });
 
+app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
+  const { name } = req.body;
+  const { customer } = req;
+
+  customer.name = name;
+
+  return res.status(200).json({
+    message: "Customer updated successfully!",
+    customers,
+  });
+})
+
+
 app.get("/statement", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
 
   return res.json(customer.statement);
+});
+
+app.get("/statement/date", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+  const { date } = req.query;
+
+  const dateFormated = new Date(date + " 00:00");
+
+  const statement = customer.statement.filter(
+    (statement) =>
+      statement.created_at.toDateString() ===
+      new Date(dateFormated).toDateString()
+  );
+  return res.json(statement);
 });
 
 app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
@@ -77,7 +104,7 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   const statementOperation = {
     description,
     amount,
-    cretedAt: new Date(),
+    created_at: new Date(),
     type: "credit",
   };
 
@@ -92,19 +119,41 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
 
   const balance = getBalance(customer.statement);
 
-  if(balance < amount) {
-    return res.status(400).json({ error: 'Insufficients funds!'})
+  if (balance < amount) {
+    return res.status(400).json({ error: "Insufficients funds!" });
   }
 
   const statementOperation = {
     amount,
-    cretedAt: new Date(),
+    created_at: new Date(),
     type: "debit",
   };
 
   customer.statement.push(statementOperation);
 
   return res.status(201).json(customer.statement);
+});
+
+app.get("/account", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  return res.json(customer);
+})
+
+app.delete("/account", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  customers.splice(customer, 1);
+
+  return res.json(customer);
+})
+
+app.get("/balance", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  const balance = getBalance(customer.statement);
+
+  return res.json(balance);
 })
 
 app.listen(3333, () => console.log("Server on!"));
