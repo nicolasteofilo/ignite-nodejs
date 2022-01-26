@@ -1,18 +1,20 @@
 import { Request, Response, Router } from 'express';
+import { v4 as uuidv4 } from 'uuid';
 
 const categoriesRouter = Router();
 
 const categories = [];
 
-categoriesRouter.post('/categories', (request: Request, response: Response) => {
+categoriesRouter.post("/", (request: Request, response: Response) => {
     const { name, description } = request.body;
 
-    categories.push({
-        // id: String(Math.random()),
+    const category = {
+        id: uuidv4(),
         name,
         description,
-        // created_at: new Date(),
-    });
+    }
+
+    categories.push(category);
 
     return response.status(201).json({ messge: 'Category created successfully' });
 })
