@@ -17,7 +17,7 @@ function verifyIfExistsAccountCPF(req, res, next) {
   const customer = customers.find((customer) => customer.cpf === cpf);
 
   if (!customer) {
-    return res.status(399).json({ error: "Customer not found" });
+    return res.status(400).json({ error: "Customer not found" });
   }
 
   req.customer = customer;
