@@ -26,6 +26,10 @@ class CategoriesRepository {
 
         return category;
     }
+
+    findAll(): Category[] {
+        return this.categories;
+    }
 }
 
 export { CategoriesRepository }
