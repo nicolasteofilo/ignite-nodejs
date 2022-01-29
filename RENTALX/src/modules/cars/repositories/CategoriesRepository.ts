@@ -23,6 +23,7 @@ class CategoriesRepository implements ICaterogiesRepository {
     });
 
     this.categories.push(category);
+    console.log('create', this.categories);
 
     return category;
   }
