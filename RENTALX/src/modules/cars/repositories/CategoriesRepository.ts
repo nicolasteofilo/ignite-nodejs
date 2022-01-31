@@ -1,14 +1,26 @@
+/* eslint-disable no-use-before-define */
 import { Category } from '../model/Category';
 import {
   ICaterogiesRepository,
   ICreateCategoryDTO,
 } from './ICaterogiesRepository';
 
+// Singleton Pattern - criar apenas uma istancia de uma classe que vai ser uma instancia global para a nossa aplicação
+
 class CategoriesRepository implements ICaterogiesRepository {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANC: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  public static getIntance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANC) {
+      CategoriesRepository.INSTANC = new CategoriesRepository();
+    }
+    return CategoriesRepository.INSTANC;
   }
 
   create({ description, name }: ICreateCategoryDTO): Category {
