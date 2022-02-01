@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
-import { Category } from '../model/Category';
+import { Category } from '../../model/Category';
 import {
   ICaterogiesRepository,
   ICreateCategoryDTO,
-} from './ICaterogiesRepository';
+} from '../ICaterogiesRepository';
 
 // Singleton Pattern - criar apenas uma istancia de uma classe que vai ser uma instancia global para a nossa aplicação
 
