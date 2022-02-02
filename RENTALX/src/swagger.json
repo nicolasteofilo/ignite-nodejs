@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RentaLX Docs",
+    "description": "This is a documentation API Rent",
+    "version": "1.0.0",
+    "contact": {
+      "email": "nicolasteofilodecastro@gmail.com"
+    }
+  }
+}
