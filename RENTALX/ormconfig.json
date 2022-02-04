@@ -2,7 +2,12 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "usernmae": "docker",
+  "username": "docker",
   "password": "ignite",
-  "database": "database_rentalx"
+  "database": "database_rentalx",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  },
+  "keepConnectionAlive": true
 }
