@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { Category } from '../../model/Category';
+import { Category } from '../../entities/Category';
 import {
   ICaterogiesRepository,
   ICreateCategoryDTO,
