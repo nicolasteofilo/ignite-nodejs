@@ -2,6 +2,19 @@ version: '3.7'
 
 # meus serviçies
 services:
+  database_rentalx:
+    image: postgres
+    container_name: database_rentalx
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=database_rentalx
+    volumes:
+      - pgdata:/data/postgres
+    network_mode: host
   app:
     build: .
     container_name: rantalx
@@ -9,3 +22,8 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app
+    network_mode: host
+
+volumes:
+  pgdata:
+    driver: local
