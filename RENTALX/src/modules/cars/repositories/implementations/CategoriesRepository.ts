@@ -20,13 +20,6 @@ class CategoriesRepository implements ICaterogiesRepository {
     this.repository = getRepository(Category);
   }
 
-  public static getIntance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANC) {
-      CategoriesRepository.INSTANC = new CategoriesRepository();
-    }
-    return CategoriesRepository.INSTANC;
-  }
-
   async create({ description, name }: ICreateCategoryDTO): Promise<void> {
     // entida para salvar
     const category = this.repository.create({
