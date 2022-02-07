@@ -10,13 +10,9 @@ import {
 // Singleton Pattern - criar apenas uma istancia de uma classe que vai ser uma instancia global para a nossa aplicação
 
 class CategoriesRepository implements ICaterogiesRepository {
-  private categories: Category[];
-
-  private static INSTANC: CategoriesRepository;
-
   private repository: Repository<Category>;
 
-  private constructor() {
+  constructor() {
     this.repository = getRepository(Category);
   }
 
@@ -28,7 +24,6 @@ class CategoriesRepository implements ICaterogiesRepository {
     });
 
     await this.repository.save(category);
-    console.log('create', this.categories);
   }
 
   async list(): Promise<Category[]> {
