@@ -7,7 +7,6 @@ WORKDIR /usr/app
 # estou copiando o package.json para o diretorio /usr/app
 COPY package.json ./
 
-# rodando para baixar as depêdencias
 RUN npm install
 
 # copiando todos os outros arquivos paro o /usr/app
