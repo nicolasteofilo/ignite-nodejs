@@ -1,10 +1,23 @@
-import { Router } from 'express'
-import { CreateUserController } from '../modules/accounts/useCases/createUser/CreateUserController'
+import { Router } from 'express';
+import multer from 'multer';
 
-const usersRoutes = Router()
+import { CreateUserController } from '../modules/accounts/useCases/createUser/CreateUserController';
+import { UpdateUserAvatarController } from '../modules/accounts/useCases/updateUserAvatar/UpdateUserAvatarController';
 
-const createUserController = new CreateUserController()
+const usersRoutes = Router();
 
-usersRoutes.post('/', createUserController.handle)
+const upload = multer({
+  dest: './avatar',
+});
 
-export { usersRoutes }
+const createUserController = new CreateUserController();
+const updateUserAvatarController = new UpdateUserAvatarController();
+
+usersRoutes.post('/', createUserController.handle);
+usersRoutes.patch(
+  '/',
+  upload.single('file'),
+  updateUserAvatarController.handle
+);
+
+export { usersRoutes };
