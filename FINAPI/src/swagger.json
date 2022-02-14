@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Title",
+        "version": "1.0.0",
+        "contact": {
+            "email": "apisupport@gmail.com"
+        }
+    },
+    "paths": {
+        "/account": {
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Create a new account",
+                "description": "Create a new account",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "John Doe",
+                                    "cpf": "12345678901"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                      "description": "Created"
+                    },
+                    "400": {
+                      "description": "Customer already exists!"
+                    }
+                  }
+            },
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "header",
+                        "description": "CPF",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Get account",
+                "description": "Get account",
+                "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "400": {
+                      "description": "Customer not found!"
+                    }
+                  }
+            }
+        }
+    }
+}
