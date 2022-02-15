@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APi finances",
+        "version": "1.0.0",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.example.com"
+        }
+    },
+    "paths": {
+        "/account": {
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Create account",
+                "description": "Create account",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "John Doe",
+                                    "cpf": "12345678901"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Customer already exists!"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get account",
+                "description": "Get account",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "header",
+                        "description": "CPF",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Customer not found!"
+                    }
+                }
+            }
+        }
+    }
+}
