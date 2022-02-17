@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { AppError } from '../../../../errors/AppError';
-import { CategoriesRepositoryInMemory } from '../../repositories/in-memory/CategoryRepositoryInMemory';
+import { AppError } from '@errors/AppError';
+import { CategoriesRepositoryInMemory } from '@modules/cars/repositories/in-memory/CategoryRepositoryInMemory';
+
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
 describe('Create Category ', () => {

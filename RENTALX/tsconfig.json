@@ -8,5 +8,23 @@
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": [
+        "modules/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@errors/*": [
+        "errors/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+    }
   }
 }
