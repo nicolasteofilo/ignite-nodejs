@@ -3,7 +3,7 @@ import { verify } from 'jsonwebtoken';
 
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
 
-import { AppError } from '../shared/errors/AppError';
+import { AppError } from '../../../errors/AppError';
 
 export async function ensureAnthenticated(
   request: Request,
