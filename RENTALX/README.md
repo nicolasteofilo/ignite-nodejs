@@ -9,7 +9,6 @@
 <!-- - [ ] It shouldn't be possible to change the license plate of a car -->
 - [x] it should be possible to register the car with availability by default
 - [ ] * it should be possible to register a car only through the admin
-- [ ] it should be possible to list all categories
  
 ## List cars
 
