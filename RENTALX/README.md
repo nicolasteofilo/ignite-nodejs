@@ -8,12 +8,12 @@
 - [x] it should not be possible to create a new car if the license plate is already registered
 <!-- - [ ] It shouldn't be possible to change the license plate of a car -->
 - [x] it should be possible to register the car with availability by default
-- [ ] * it should be possible to register a car only through the admin
+- [x] it should be possible to register a car only through the admin
  
 ## List cars
 
 **RF**
-- [ ] it should be possible to list the cars that are available
+- [x] it should be possible to list the cars that are available
 - [ ] it should be possible to list available cars by category name
 - [ ] it should be possible to list available cars by brand name
 - [ ] it should be possible to list available cars by car name
