@@ -10,6 +10,8 @@ import { ICarsImagesRepository } from '@modules/cars/repositories/ICarsImagesRep
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ICaterogiesRepository } from '@modules/cars/repositories/ICaterogiesRepository';
 import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationsRepository';
+import { RentalsRepository } from '@modules/rentals/infra/typeorm/repositories/RentalsRepository';
+import { IRentalRepository } from '@modules/rentals/repositories/interfaces/IRentalRepository';
 
 container.registerSingleton<ICaterogiesRepository>(
   'CategoriesRepository',
@@ -31,4 +33,9 @@ container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImagesRepository>(
   'CarsImageRepository',
   CarsImagesRepository
+);
+
+container.registerSingleton<IRentalRepository>(
+  'RentalsRepository',
+  RentalsRepository
 );
