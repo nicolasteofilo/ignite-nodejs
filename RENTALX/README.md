@@ -14,34 +14,34 @@
 
 **RF**
 - [x] it should be possible to list the cars that are available
-- [ ] it should be possible to list available cars by category name
-- [ ] it should be possible to list available cars by brand name
-- [ ] it should be possible to list available cars by car name
+- [x] it should be possible to list available cars by category name
+- [x] it should be possible to list available cars by brand name
+- [x] it should be possible to list available cars by car name
 
 **RN**
-- [ ] it should be possible to list cars for non-logged-in users
-- [ ] It should be possible to list all specifications
-- [ ] It should be possible to list all cars
+- [x] it should be possible to list cars for non-logged-in users
+- [x] It should be possible to list all specifications
+- [x] It should be possible to list all cars
 
 ## Car specification record
 
 **RF**
-- [ ] It must be possible to register a specification for a car
-- [ ] It should not be possible to register a specification for an unregistered car
-- [ ] It should not be possible to register an existing specification for the same car
-- [ ] it should be possible to register, only through the admin
+- [x] It must be possible to register a specification for a car
+- [x] It should not be possible to register a specification for an unregistered car
+- [x] It should not be possible to register an existing specification for the same car
+- [x] it should be possible to register, only through the admin
 
 ## Registration of car images
 
 **RF**
-- [ ] If it is possible to register the image of the car
+- [x] If it is possible to register the image of the car
 
 **RNF**
-- [ ] Use multer to upload files
+- [x] Use multer to upload files
 
 **RN**
-- [ ] If it is possible to register more than one image for the same car
-- [ ] If it is possible to register only by admin users
+- [x] If it is possible to register more than one image for the same car
+- [x] If it is possible to register only by admin users
 
 ## Rent Scheduling
 
