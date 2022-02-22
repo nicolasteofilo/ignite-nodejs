@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateCarSpecificationUseCase } from './CreateCarSpecificationUseCase';
 
-class CreateCarSpecificatioControler {
+class CreateCarSpecificationController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const { specification_id } = request.body;
@@ -21,4 +21,4 @@ class CreateCarSpecificatioControler {
   }
 }
 
-export { CreateCarSpecificatioControler };
+export { CreateCarSpecificationController };

@@ -46,9 +46,10 @@
 ## Rent Scheduling
 
 **RF**
-- [ ] If it is possible to register a rental
+- [x] If it is possible to register a rental
 
 **RN**
-- [ ] The rental must have a minimum duration of 24 hours
-- [ ] It should not be possible to register someone if there is already one open for the same user
-- [ ] It should not be possible to register someone if there is already one open for the same car
+- [x] The rental must have a minimum duration of 24 hours
+- [x] It should not be possible to register someone if there is already one open for the same user
+- [x] It should not be possible to register someone if there is already one open for the same car
+- [x] The user must be logged in
