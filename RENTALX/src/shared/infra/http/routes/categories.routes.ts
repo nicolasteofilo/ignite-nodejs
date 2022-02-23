@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { ensureAnthenticated } from 'middlewares/ensureAuthenticated';
 import multer from 'multer';
 
 import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
@@ -7,6 +6,7 @@ import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { CreateCategoryController } from '../../../../modules/cars/useCases/createCategory/CreateCategoryController';
 import { ImportCategoriesController } from '../../../../modules/cars/useCases/importCategories/ImportCategoriesController';
 import { ListCategoriesController } from '../../../../modules/cars/useCases/listCategories/ListCategoriesController';
+import { ensureAnthenticated } from '../middlewares/ensureAuthenticated';
 
 const categoriesRouter = Router();
 const upload = multer({
