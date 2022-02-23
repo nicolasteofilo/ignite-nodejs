@@ -48,4 +48,24 @@ describe('Create Category Controller', () => {
 
     expect(statusCode).toBe(201);
   });
+  it('should be not able to create a new category if category already exists', async () => {
+    const responseToken = await request(app).post('/sessions').send({
+      email: 'admin@rentx.com.br',
+      password: 'admin',
+    });
+
+    const { token } = responseToken.body;
+
+    const { statusCode } = await request(app)
+      .post('/categories')
+      .send({
+        name: 'New Category',
+        description: 'New Category Description',
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
+
+    expect(statusCode).toBe(400);
+  });
 });
