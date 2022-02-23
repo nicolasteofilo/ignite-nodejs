@@ -30,6 +30,10 @@ class CreateCarSpecificationUseCase {
       specification_id
     );
 
+    if (!specification) {
+      throw new AppError('Specification does not exists', 400);
+    }
+
     carsExists.specifications = specification;
 
     await this.carsRepository.create(carsExists);

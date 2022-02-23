@@ -51,8 +51,6 @@ class CreateRentalUseCase {
       expected_return_date
     );
 
-    console.log(compare);
-
     if (compare < minimumHoursForRentCar) {
       throw new AppError('Expected return date must be at least 24 hours');
     }

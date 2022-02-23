@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { ensureAnthenticated } from 'middlewares/ensureAuthenticated';
 import multer from 'multer';
 
 import uploadConfig from '@config/upload';
@@ -8,6 +7,8 @@ import { CreateCarSpecificationController } from '@modules/cars/useCases/createC
 import { ListAvailableCarsController } from '@modules/cars/useCases/listAvailableCars/ListAvailableCarsController';
 import { UploadImageController } from '@modules/cars/useCases/uploadImage/UploadCarImagesController';
 import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
+
+import { ensureAnthenticated } from '../middlewares/ensureAuthenticated';
 
 const carsRoutes = Router();
 
