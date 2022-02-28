@@ -24,7 +24,7 @@ class CreateUserUseCase {
       throw new AppError('User already exists');
     }
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await hash(password, 10);
     await this.usersRepository.create({
       name,
       email,
