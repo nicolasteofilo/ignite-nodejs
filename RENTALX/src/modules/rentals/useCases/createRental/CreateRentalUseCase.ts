@@ -19,7 +19,10 @@ class CreateRentalUseCase {
     private rentalsRepository: IRentalRepository,
 
     @inject('DayjsDateProvider')
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository
   ) {}
 
   async execute({
@@ -60,6 +63,8 @@ class CreateRentalUseCase {
       user_id,
       expected_return_date,
     });
+
+    await this.carsRepository.updateAvailable(car_id, false);
 
     return rental;
   }

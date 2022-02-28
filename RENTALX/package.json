@@ -15,11 +15,11 @@
     "multer": "^1.4.4",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^6.2.2",
     "swagger-ui-express": "^4.3.0",
     "tsyringe": "^4.4.0",
     "typeorm": "^0.2.41",
-    "uuid": "^8.3.2",
-    "supertest": "^6.2.2"
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "dev": "npx ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",

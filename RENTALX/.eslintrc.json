@@ -22,7 +22,7 @@
   ],
   "rules": {
       "camelcase": "off",
-      "import/no-unresolved": "error",
+      "import/no-unresolved": "off",
       "@typescript-eslint/naming-convention": [
           "error",
           {
@@ -40,16 +40,19 @@
       "import/prefer-default-export": "off",
       "no-shadow": "off",
       "no-console": "off",
+      "import/named": "off",
+      "import/no-duplicates": "off",
+      "import/no-self-import": "off",
+      "import/order": "off",
+      "import/no-cycle": "off",
+      "import/no-relative-packages": "off",
+      "import/no-useless-path-segments": "off",
       "no-useless-constructor": "off",
+      "import/no-named-as-default": "off",
+      "import/no-named-as-default-member": "off",
       "no-empty-function": "off",
       "lines-between-class-members": "off",
-      "import/extensions": [
-          "error",
-          "ignorePackages",
-          {
-              "ts": "never"
-          }
-      ],
+      "import/extensions": "off",
       "import-helpers/order-imports": [
           "warn",
           {
@@ -69,14 +72,7 @@
               }
           }
       ],
-      "import/no-extraneous-dependencies": [
-          "error",
-          {
-              "devDependencies": [
-                  "**/*.spec.js"
-              ]
-          }
-      ],
+      "import/no-extraneous-dependencies": "off",
       "prettier/prettier": "error"
   },
   "settings": {

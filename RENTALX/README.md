@@ -53,3 +53,14 @@
 - [x] It should not be possible to register someone if there is already one open for the same user
 - [x] It should not be possible to register someone if there is already one open for the same car
 - [x] The user must be logged in
+
+## Car return
+
+- [] It must be possible to return a car
+- [] If the car is returned less than 24 hours later, the full day will be charged.
+- [] When making the return, the car must be released for - another rental.
+- [] When making the return, the user must be released - for another rental.
+- [] When making the return, the total rent must be calculated.
+- [] If the return time is longer than the expected delivery time, a fine will be charged - proportional to the days of delay.
+- [] If there is a fine, it must be added to the total rent.
+The user must be logged into the application
