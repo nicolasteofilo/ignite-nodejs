@@ -64,3 +64,4 @@
 - [] If the return time is longer than the expected delivery time, a fine will be charged - proportional to the days of delay.
 - [] If there is a fine, it must be added to the total rent.
 The user must be logged into the application
+- [] The user must be logged in
