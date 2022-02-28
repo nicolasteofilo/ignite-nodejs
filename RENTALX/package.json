@@ -11,6 +11,7 @@
     "dayjs": "^1.10.4",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
+    "git-commit-msg-linter": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
     "pg": "^8.7.1",
