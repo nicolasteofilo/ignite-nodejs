@@ -27,7 +27,7 @@
     "trun": "yarn typeorm migration:run",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
     "build": "tsc",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

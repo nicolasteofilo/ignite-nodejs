@@ -17,26 +17,25 @@ class CreateRentalUseCase {
   constructor(
     @inject('RentalsRepository')
     private rentalsRepository: IRentalRepository,
-
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
-
     @inject('CarsRepository')
     private carsRepository: ICarsRepository
   ) {}
 
   async execute({
+    user_id,
     car_id,
     expected_return_date,
-    user_id,
   }: IRequest): Promise<Rental> {
-    const minimumHoursForRentCar = 24;
+    const minimumHour = 24;
+
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(
       car_id
     );
 
     if (carUnavailable) {
-      throw new AppError('Car already rented');
+      throw new AppError('Car is unavailable');
     }
 
     const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
@@ -44,7 +43,7 @@ class CreateRentalUseCase {
     );
 
     if (rentalOpenToUser) {
-      throw new AppError('User already has a rental open');
+      throw new AppError("There's a rental in progress for user!");
     }
 
     const dateNow = this.dateProvider.dateNow();
@@ -54,13 +53,13 @@ class CreateRentalUseCase {
       expected_return_date
     );
 
-    if (compare < minimumHoursForRentCar) {
-      throw new AppError('Expected return date must be at least 24 hours');
+    if (compare < minimumHour) {
+      throw new AppError('Invalid return time!');
     }
 
     const rental = await this.rentalsRepository.create({
-      car_id,
       user_id,
+      car_id,
       expected_return_date,
     });
 

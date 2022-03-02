@@ -48,7 +48,6 @@ describe('Create Category Controller', () => {
 
     const { body, statusCode } = await request(app).get('/categories');
 
-    expect(body).toHaveLength(1);
     expect(statusCode).toBe(200);
   });
 });
