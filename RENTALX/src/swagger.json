@@ -1,11 +1,15 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentaLX Docs",
+    "title": "RENTX Docs",
     "description": "This is a documentation API Rent",
     "version": "1.0.0",
     "contact": {
-      "email": "nicolasteofilodecastro@gmail.com"
+      "name": "Nicolas Teófilo",
+      "email": "nicolasteofilodecastro@gmail.com",
+      "url": "https://nicolasteofilo.dev",
+      "location": "Brazil",
+      "jobTitle": "JS Developer"
     }
   },
   "paths": {
@@ -98,6 +102,11 @@
         ],
         "summary": "Upload a new category",
         "description": "Upload a new category",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -127,6 +136,11 @@
         ],
         "sumary": "Create a Specification",
         "description": "Create a new Specification",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -179,6 +193,44 @@
           }
         }
       }
+    },
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a car",
+        "description": "Create a new car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definations/Car"
+              },
+              "example": {
+                "name": "Car sample",
+                "description": "Car sample description",
+                "daily_rate": 100,
+                "license_plate": "AOU-8789",
+                "fine_amount": 100,
+                "brand": "Chevrolet",
+                "category_id": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created with success"
+          },
+          "400": {
+            "description": "Car already exists"
+          }
+        }
+      }
     }
   },
   "definations": {
@@ -189,6 +241,32 @@
           "type": "string"
         },
         "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "daily_rate": {
+          "type": "number"
+        },
+        "license_plate": {
+          "type": "string"
+        },
+        "fine_amount": {
+          "type": "number"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "category_id": {
           "type": "string"
         }
       }
