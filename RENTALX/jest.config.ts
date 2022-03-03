@@ -9,6 +9,8 @@ export default {
   coverageProvider: 'v8',
   preset: 'ts-jest',
   testMatch: ['**/*.spec.ts'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/src/',
   }),

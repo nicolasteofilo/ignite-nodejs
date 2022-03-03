@@ -2,7 +2,10 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
+import { authConfig } from '@config/auth';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
+import { IUserTokensRepository } from '@modules/accounts/repositories/IUserTokensRepository';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
@@ -16,13 +19,18 @@ interface IResponse {
     email: string;
   };
   token: string;
+  refresh_token: string;
 }
 
 @injectable()
 class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject('UserTokensRepository')
+    private userTokensRepository: IUserTokensRepository,
+    @inject('DayjsDateProvider')
+    private dateProvider: IDateProvider
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -41,9 +49,24 @@ class AuthenticateUserUseCase {
       throw new AppError('Email or password incorrect!');
     }
 
-    const token = sign({}, '484f1c5d540e55294143e3d476346509', {
+    const token = sign({}, authConfig.secret_token, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.expiresIn,
+    });
+
+    const refresh_token = sign({ email }, authConfig.secret_refresh_token, {
+      subject: user.id,
+      expiresIn: authConfig.expiresInRefresh,
+    });
+
+    const refresh_token_expires_date = this.dateProvider.addDays(
+      authConfig.expiresInRefreshDays
+    );
+
+    await this.userTokensRepository.create({
+      user_id: user.id,
+      expires_date: refresh_token_expires_date,
+      refresh_token,
     });
 
     const tokenResponse: IResponse = {
@@ -52,6 +75,7 @@ class AuthenticateUserUseCase {
         email: user.email,
       },
       token,
+      refresh_token,
     };
 
     return tokenResponse;
