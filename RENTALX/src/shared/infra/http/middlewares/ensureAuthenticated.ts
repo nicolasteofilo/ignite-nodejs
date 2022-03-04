@@ -3,6 +3,7 @@ import { verify } from 'jsonwebtoken';
 
 import { authConfig } from '@config/auth';
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
+import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
 
 import { AppError } from '../../../errors/AppError';
 
@@ -12,6 +13,7 @@ export async function ensureAnthenticated(
   next: NextFunction
 ) {
   const authHeader = request.headers.authorization;
+  const usersTokensRepository = new UsersTokensRepository();
 
   if (!authHeader) {
     throw new AppError('JWT token is missing', 401);
@@ -20,11 +22,12 @@ export async function ensureAnthenticated(
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: userId } = verify(token, authConfig.secret_token);
+    const { sub: userId } = verify(token, authConfig.secret_refresh_token);
 
-    const usersRepository = new UsersRepository();
-
-    const user = await usersRepository.findById(String(userId));
+    const user = await usersTokensRepository.findByUserIdAndRefreshToken(
+      String(userId),
+      token
+    );
 
     if (!user) {
       throw new AppError('User does not exists!', 401);
