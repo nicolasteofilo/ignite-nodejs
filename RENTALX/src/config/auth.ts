@@ -1,7 +1,7 @@
-export const authConfig = {
-  secret_token: '484f1c5d540e55294143e3d476346509',
-  secret_refresh_token: '6e28b4119fc68fd82073dd740a2d31f0',
-  expiresIn: '15m',
-  expiresInRefresh: '30d',
-  expiresInRefreshDays: 30,
+export default {
+  secret_token: 'cfe275a5908b5650488e0b0342c2d6cc',
+  expires_in_token: '15m',
+  secret_refresh_token: '125c41faf66e2c351bff02def3b22cab',
+  expires_in_refresh_token: '30d',
+  expires_refresh_token_days: 30,
 };

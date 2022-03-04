@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { authConfig } from '@config/auth';
-import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
+import authConfig from '@config/auth';
 import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
 
 import { AppError } from '../../../errors/AppError';
@@ -34,7 +33,7 @@ export async function ensureAnthenticated(
     }
 
     request.user = {
-      id: user.id,
+      id: String(userId),
     };
     next();
   } catch (error) {
