@@ -24,14 +24,10 @@ export class SendForgotPassWordMailUseCase {
   async execute(email: string): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
 
-    const templatePath = resolve(
-      __dirname,
-      '..',
-      '..',
-      'views',
-      'emails',
-      'forgotPassword.hbs'
-    );
+    const templatePath =
+      '/usr/app/src/modules/accounts/views/emails/forgotPassword.hbs';
+
+    console.log(templatePath);
 
     if (!user) {
       throw new AppError('User does not exists');
@@ -48,7 +44,7 @@ export class SendForgotPassWordMailUseCase {
 
     const variables = {
       name: user.name,
-      link: `${process.env.FORGOT_MAIL_URL}${token}`,
+      link: `http://localhost:3000/password/reset?token=${token}`,
     };
 
     await this.mailProvider.sendMail(
