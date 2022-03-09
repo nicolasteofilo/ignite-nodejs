@@ -37,8 +37,6 @@ class EtherealMailProvider implements IMailProvider {
       subject,
       html: templateHTML,
     });
-    console.log('Message send: %s', message.messageId);
-    console.log('Preview URL: $s', nodemailer.getTestMessageUrl(message));
   }
 }
 
