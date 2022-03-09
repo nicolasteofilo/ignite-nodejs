@@ -19,6 +19,7 @@ class EtherealMailProvider implements IMailProvider {
     });
     this.client = transport;
   }
+
   async sendMail(
     to: string,
     subject: string,
@@ -31,7 +32,7 @@ class EtherealMailProvider implements IMailProvider {
 
     const templateHTML = templateParse(variables);
 
-    const message = await this.client.sendMail({
+    await this.client.sendMail({
       to,
       from: 'Rentx <roreplay@rentx.com.br>',
       subject,

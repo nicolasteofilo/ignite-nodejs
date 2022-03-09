@@ -2,7 +2,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import authConfig from '@config/auth';
+import auth from '@config/auth';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { IUserTokensRepository } from '@modules/accounts/repositories/IUserTokensRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
@@ -41,7 +41,7 @@ class AuthenticateUserUseCase {
       secret_token,
       expires_in_refresh_token,
       expires_refresh_token_days,
-    } = authConfig;
+    } = auth;
 
     if (!user) {
       throw new AppError('Email or password incorrect!');
