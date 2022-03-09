@@ -27,10 +27,8 @@ export class SendForgotPassWordMailUseCase {
     const templatePath =
       '/usr/app/src/modules/accounts/views/emails/forgotPassword.hbs';
 
-    console.log(templatePath);
-
     if (!user) {
-      throw new AppError('User does not exists');
+      throw new AppError('User does not exists!');
     }
 
     const token = uuidv4();
