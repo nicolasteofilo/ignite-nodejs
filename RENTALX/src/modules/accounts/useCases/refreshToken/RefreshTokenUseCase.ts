@@ -1,7 +1,7 @@
 import { sign, verify } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { authConfig } from '@config/auth';
+import authConfig from '@config/auth';
 import { IUserTokensRepository } from '@modules/accounts/repositories/IUserTokensRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
@@ -41,11 +41,11 @@ export class RefreshTokenUseCase {
 
     const refresh_token = sign({ email }, authConfig.secret_refresh_token, {
       subject: sub,
-      expiresIn: authConfig.expiresInRefresh,
+      expiresIn: authConfig.secret_refresh_token,
     });
 
     const expires_date = this.dateProvider.addDays(
-      authConfig.expiresInRefreshDays
+      authConfig.expires_refresh_token_days
     );
 
     await this.usersTokensRepository.create({
