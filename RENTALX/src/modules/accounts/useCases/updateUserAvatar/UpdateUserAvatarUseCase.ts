@@ -24,9 +24,10 @@ class UpdateUserAvatarUseCase {
     // if (user.avatar !== undefined) {
     //   await this.storageProvider.delete(user.avatar, 'avatar');
     // }
+
     console.log('passou do if');
     await this.storageProvider.save(avatar_file, 'avatar');
-    console.log('passou do if');
+    console.log('passou do save');
 
     user.avatar = avatar_file;
 
