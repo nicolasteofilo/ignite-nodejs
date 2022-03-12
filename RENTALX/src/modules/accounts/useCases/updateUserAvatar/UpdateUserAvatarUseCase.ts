@@ -20,13 +20,16 @@ class UpdateUserAvatarUseCase {
   async execute({ avatar_file, userId }: IRequest): Promise<void> {
     const user = await this.usersRepository.findById(userId);
 
-    if (user.avatar) {
-      await this.storageProvider.delete(user.avatar, 'avatar');
-    }
-
-    await this.storageProvider.save(String(avatar_file), 'avatar');
+    console.log(user.avatar);
+    // if (user.avatar !== undefined) {
+    //   await this.storageProvider.delete(user.avatar, 'avatar');
+    // }
+    console.log('passou do if');
+    await this.storageProvider.save(avatar_file, 'avatar');
+    console.log('passou do if');
 
     user.avatar = avatar_file;
+
     await this.usersRepository.create(user);
   }
 }
